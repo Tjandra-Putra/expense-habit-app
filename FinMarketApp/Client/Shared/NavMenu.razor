@@ -14,9 +14,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <NavLink class="nav-link text-white" aria-current="page" href="/dashboard">Budgets</NavLink>
-                </li>
+                <AuthorizeView>
+                    <Authorized>
+                        <li class="nav-item">
+                            <NavLink class="nav-link text-white" aria-current="page" href="/dashboard">Budgets</NavLink>
+                        </li>
+                    </Authorized>
+                </AuthorizeView>
             </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
@@ -26,6 +30,11 @@
         </div>
     </div>
 </nav>
+
+@code {
+
+}
+
 
 @code {
  

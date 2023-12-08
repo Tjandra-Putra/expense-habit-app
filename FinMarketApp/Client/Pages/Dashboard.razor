@@ -1,0 +1,118 @@
+﻿@page "/dashboard"
+
+<PageTitle>Fin Market (Dashboard)</PageTitle>
+
+<link href="css/dashboard.css" rel="stylesheet" />
+
+<NavMenu/>
+
+<main>
+    <div class="container">
+        <div class="d-flex flex-row justify-content-between">
+            <div class="title">My Budgets</div>
+            <button class="btn btn-primary btn-budget"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#createBudgetModal">
+                Create Budget
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade"
+                 id="createBudgetModal"
+                 tabindex="-1"
+                 aria-labelledby="createBudgetModal"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <form action="">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                    Set a Budget
+                                </h1>
+                                <button type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label class="form-label">Name</label>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   name="name"
+                                                   required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label class="form-label">Target</label>
+                                            <input type="number"
+                                                   class="form-control"
+                                                   name="target"
+                                                   required />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button"
+                                        class="btn btn-outline-dark"
+                                        data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="submit" class="btn btn-primary btn-budget">
+                                    Save changes
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Target</th>
+                        <th scope="col">Balance</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>My Budget</td>
+                        <td>$200</td>
+                        <td>$1200</td>
+                        <td>on track</td>
+                        <td>10/12/2024</td>
+                        <td>
+                            <button class="btn btn-light btn-action" type="button">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </button>
+                            <button class="btn btn-light btn-action" type="button">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+
+@code {
+
+}

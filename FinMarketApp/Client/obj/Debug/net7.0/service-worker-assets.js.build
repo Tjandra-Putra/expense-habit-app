@@ -913,15 +913,15 @@
       "url": "_framework\/FinMarketApp.Shared.pdb"
     },
     {
-      "hash": "sha256-hslkVr4wO2d25rFKMPZ15zLDjjFCicAazEAywraSnXY=",
+      "hash": "sha256-wqXPlLn8N6bkSjqbtZvdxWtIU9dHpnGyptrJ\/JCANOg=",
       "url": "_framework\/FinMarketApp.Client.dll"
     },
     {
-      "hash": "sha256-p7GCti5V3JcaEqOwlviW8Ivvlx0yQ2OZAPxk9ZhFHXA=",
+      "hash": "sha256-oqRF8QJ20M+UMS5zelYsLVO+iMlDJesSI90zmxpt43k=",
       "url": "_framework\/FinMarketApp.Client.pdb"
     },
     {
-      "hash": "sha256-DbRT5fuoqqGNESOfVqacTJnhCU1FXkBn48HSkmK00zs=",
+      "hash": "sha256-pfYllT4avVHauusHTruX0sar7\/m3dNl88zvT1w\/nWo0=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -929,5 +929,5 @@
       "url": "_content\/Microsoft.AspNetCore.Components.WebAssembly.Authentication\/AuthenticationService.js"
     }
   ],
-  "version": "eRYyB4L7"
+  "version": "XREYcsn3"
 };
