@@ -1,0 +1,72 @@
+﻿.left .title {
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.left .description {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+label {
+    font-weight: 500;
+}
+
+.left {
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+
+.right {
+    background-color: #23254d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+
+.left,
+.right {
+    padding: 4rem;
+    height: 100vh;
+}
+
+.btn-login {
+    background-color: #23254d;
+    border-color: #23254d;
+    margin-top: 0.5rem;
+}
+
+.right {
+    color: white;
+    text-align: center;
+}
+
+    .right .title {
+        font-size: 3rem;
+        text-transform: uppercase;
+        line-height: 3rem;
+    }
+
+        .right .title span {
+            color: rgba(255, 255, 255, 0.572);
+        }
+
+    .right .description {
+        width: 13rem;
+        margin: 0.5rem auto;
+        line-height: 1.3rem;
+    }
+
+.logo {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 7rem;
+}

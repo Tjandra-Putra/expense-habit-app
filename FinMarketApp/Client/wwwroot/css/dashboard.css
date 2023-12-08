@@ -1,0 +1,21 @@
+﻿main {
+    margin-top: 1.5rem;
+}
+
+.btn-budget {
+    background-color: #23254d;
+    border-color: #23254d;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #23254d;
+}
+
+.card {
+    margin-top: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 10px;
+    padding: 1rem;
+}

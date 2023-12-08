@@ -1,0 +1,16 @@
+.navbar[b-dmi0ahupsl] {
+    background-color: #23254d !important;
+    height: 60px;
+}
+
+.navbar .nav-link[b-dmi0ahupsl],
+.navbar .navbar-brand[b-dmi0ahupsl] {
+    color: #ffffff !important;
+}
+
+.logo[b-dmi0ahupsl] {
+    width: 6rem;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}

@@ -1,0 +1,86 @@
+﻿@page "/register"
+
+<PageTitle>Fin Market (Register)</PageTitle>
+
+<link href="css/register.css" rel="stylesheet" />
+
+<main>
+   <form>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="left col">
+                    <div class="title">Create an Account</div>
+                    <div class="description">
+                        Bring peace of mind to your financial journey
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" name="firstName" required />
+                            </div>
+                            <div class="col">
+                                <label class="form-label">Last Name </label>
+                                <input type="text" class="form-control" name="lastName" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" name="email" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label">Confirm Password</label>
+                                <input type="password"
+                                       class="form-control"
+                                       name="confirmPassword" required/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary btn-login" type="submit">
+                            Register
+                        </button>
+                    </div>
+                    <small class="mt-2 text-muted">Already have an account? <NavLink href="/login">Sign in</NavLink></small>
+                </div>
+
+                <div class="right col">
+                    <div class="title">
+                        <span> Welcome to</span> <br />
+                        fin market
+                    </div>
+                    <div class="description">
+                        Navigating your financial future with smart tips today
+                    </div>
+
+                    <img src="/images/logo.png" alt="" class="img-fluid logo" />
+                </div>
+            </div>
+        </div>
+   </form>
+</main>
+
+
+@code {
+
+}

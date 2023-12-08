@@ -1,0 +1,11 @@
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Shared\bin\Debug\net7.0\FinMarketApp.Shared.deps.json
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Shared\bin\Debug\net7.0\FinMarketApp.Shared.dll
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Shared\bin\Debug\net7.0\FinMarketApp.Shared.pdb
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Shared\obj\Debug\net7.0\FinMarketApp.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Shared\obj\Debug\net7.0\FinMarketApp.Shared.AssemblyInfoInputs.cache
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Shared\obj\Debug\net7.0\FinMarketApp.Shared.AssemblyInfo.cs
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Shared\obj\Debug\net7.0\FinMarketApp.Shared.csproj.CoreCompileInputs.cache
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Shared\obj\Debug\net7.0\FinMarketApp.Shared.dll
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Shared\obj\Debug\net7.0\refint\FinMarketApp.Shared.dll
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Shared\obj\Debug\net7.0\FinMarketApp.Shared.pdb
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Shared\obj\Debug\net7.0\ref\FinMarketApp.Shared.dll

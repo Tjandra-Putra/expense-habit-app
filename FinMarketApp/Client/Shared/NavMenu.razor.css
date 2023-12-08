@@ -1,0 +1,16 @@
+.navbar {
+    background-color: #23254d !important;
+    height: 60px;
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand {
+    color: #ffffff !important;
+}
+
+.logo {
+    width: 6rem;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
