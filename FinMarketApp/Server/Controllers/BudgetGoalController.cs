@@ -103,8 +103,26 @@ namespace FinMarketApp.Server.Controllers
                 Debug.WriteLine($"Error saving budget goal: {ex.Message}");
                 return BadRequest("Error saving budget goal.");
             }
-
         }
+
+        // ================================ Delete Budget Goal by Id ================================
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<BudgetGoal>> DeleteBudgetGoal(int id)
+        {
+            var budgetGoal = await _context.BudgetGoals.FindAsync(id);
+
+            if (budgetGoal == null)
+            {
+                return NotFound("Sorry, no budget goal found.");
+            }
+
+            _context.BudgetGoals.Remove(budgetGoal);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(budgetGoal);
+        }
+
 
     }
 }

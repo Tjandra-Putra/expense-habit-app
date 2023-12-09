@@ -5,6 +5,7 @@
 @using FinMarketApp.Shared
 @inject HttpClient Http
 @inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IJSRuntime JSRuntime
 
 
 
@@ -120,7 +121,7 @@
                                     <button class="btn btn-light btn-action" type="button">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </button>
-                                    <button class="btn btn-light btn-action" type="button">
+                                    <button class="btn btn-light btn-action" @onclick="() => DeleteGoal(goal.BudgetGoalId)">
                                         <i class="fa-regular fa-trash-can"></i>
                                     </button>
                                 </td>
@@ -170,7 +171,6 @@
     }
 
     // ========= CREATE BUDGET GOAL =========
-
     private BudgetGoal newBudgetGoal = new BudgetGoal();
 
     private async Task CreateBudgetGoal()
@@ -198,6 +198,42 @@
                     // Refresh Page
                     NavigationManager.NavigateTo("/dashboard", true);
                     Console.WriteLine("Budget goal created successfully!");
+                }
+                else
+                {
+                    // Handle error response from the server
+                    var errorMessage = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine($"Error: {errorMessage}");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+    }
+
+    private async Task DeleteGoal(int goalId)
+    {
+        var confirmDelete = await JSRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to delete this budget goal?");
+
+        if (confirmDelete)
+        {
+            try
+            {
+                var response = await Http.DeleteAsync($"api/budgetgoal/{goalId}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Successfully deleted the budget goal
+                    // You may also want to refresh the list of budget goals
+    
+                    // Refresh Page
+                    NavigationManager.NavigateTo("/dashboard", true);
+                    Console.WriteLine("Budget goal deleted successfully!");
+                    
+                    
                 }
                 else
                 {
