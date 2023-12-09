@@ -7,7 +7,6 @@ namespace FinMarketApp.Server.Models
     {
         public List<Expense> Expenses { get; set; } = new List<Expense>();
         public List<BudgetGoal> BudgetGoals { get; set; } = new List<BudgetGoal>();
-
-
+        public List<Category> Category { get; set; } = new List<Category>();
     }
 }

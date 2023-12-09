@@ -18,5 +18,7 @@ namespace FinMarketApp.Server.Data
         // Add a DbSet for each entity type that you want to include in your model
         public DbSet<Expense> Expenses => Set<Expense>();
         public DbSet<BudgetGoal> BudgetGoals => Set<BudgetGoal>();
+
+        public DbSet<Category> Category => Set<Category>();
     }
 }

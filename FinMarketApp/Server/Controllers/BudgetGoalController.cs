@@ -123,6 +123,26 @@ namespace FinMarketApp.Server.Controllers
             return Ok(budgetGoal);
         }
 
+        // ================================ Update Budget Goal by Id ================================
+        [HttpPut("{id}")]
+        public async Task<ActionResult<BudgetGoal>> UpdateBudgetGoal(int id, BudgetGoal clientBudgetGoal)
+        {
+          
+            var budgetGoal = await _context.BudgetGoals.FindAsync(id);
 
+            if (budgetGoal == null)
+            {
+                return NotFound("Sorry, no budget goal found.");
+            }
+
+            budgetGoal.Name = clientBudgetGoal.Name;
+            budgetGoal.Target = clientBudgetGoal.Target;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(budgetGoal);
+
+        }
+        
     }
 }

@@ -7,6 +7,7 @@
 @using FinMarketApp.Shared
 @inject HttpClient Http
 @inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IJSRuntime JSRuntime
 
 @if (Id == null)
 {
@@ -60,6 +61,7 @@
                                             <input type="text"
                                                    class="form-control"
                                                    name="name"
+                                                   @bind="newExpense.Name"
                                                    required />
                                         </div>
                                     </div>
@@ -72,18 +74,17 @@
                                             <select class="form-select"
                                                     aria-label="Default select example"
                                                     name="category"
+                                                    @bind="newExpense.Category"
                                                     required>
-                                                <option selected disabled>Select Category</option>
-                                                <option value="Grocery">Grocery</option>
-                                                <option value="Health">Health</option>
-                                                <option value="Shopping">Shopping</option>
-                                                <option value="Transportation">
-                                                    Transportation
-                                                </option>
-                                                <option value="Business Services">
-                                                    Business Services
-                                                </option>
-                                                <option value="Others">Others</option>
+                                                <option>Select Category</option>
+                                                @if (categories != null && categories.Any())
+                                                {
+                                                    @foreach (var category in categories)
+                                                    {
+                                                        <option value="@category.Name">@category.Name</option>
+                                                    }
+                                                }
+                                           
                                             </select>
                                         </div>
                                     </div>
@@ -94,9 +95,11 @@
                                         <div class="col">
                                             <label class="form-label">Amount</label>
                                             <input type="number"
+                                                   step="0.01"
                                                    class="form-control"
                                                    name="amount"
                                                    placeholder="$0.00"
+                                                    @bind="newExpense.Amount"
                                                    required />
                                         </div>
                                     </div>
@@ -108,7 +111,7 @@
                                         data-bs-dismiss="modal">
                                     Close
                                 </button>
-                                <button type="submit" class="btn btn-primary btn-budget">
+                                <button type="submit" class="btn btn-primary btn-budget" @onclick="() => CreateExpense()">
                                     Save changes
                                 </button>
                             </div>
@@ -128,19 +131,28 @@
             <div class="col">
                 <div class="card">
                     <div class="card-title">Balance</div>
-                    <div class="figure">$2000</div>
+                    <div class="figure">$@(budgetGoal?.Target - TotalExpenses)</div>
                 </div>
             </div>
             <div class="col">
                 <div class="card">
                     <div class="card-title">Status</div>
-                    <div class="figure">ON TRACK</div>
+                    <div class="figure">
+                        @if (TotalExpenses < budgetGoal?.Target)
+                        {
+                            <span class="badge bg-success">On Track</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Over Budget</span>
+                        }
+                    </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card">
-                    <div class="card-title">Total Transactions</div>
-                    <div class="figure">$2000</div>
+                    <div class="card-title">Total Expenses</div>
+                    <div class="figure">$@TotalExpenses</div>
                 </div>
             </div>
         </div>
@@ -150,32 +162,46 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">No.</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Category</th>
                         <th scope="col">Name</th>
                         <th scope="col">Amount</th>
                         <th scope="col">Date</th>
-                        <th scope="col">Balance</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>My Budget</td>
-                        <td>$200</td>
-                        <td>$1200</td>
-                        <td>on track</td>
-                        <td>10/12/2024</td>
-                        <td>
-                            <button class="btn btn-light btn-action" type="button">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            <button class="btn btn-light btn-action" type="button">
-                                <i class="fa-regular fa-trash-can"></i>
-                            </button>
-                        </td>
-                    </tr>
+                    @if (expenses != null && expenses.Any())
+                    {
+                        @foreach (var expense in expenses)
+                        {
+                            <tr>
+                               <td>
+                                    @expense.ExpenseId
+                               </td>
+                                <td>
+                                    @expense.Category
+                                </td>
+                                <td>
+                                    @expense.Name
+                                </td>
+                                <td>
+                                    $@expense.Amount
+                                </td>
+                                <td>
+                                    @expense.Date
+                                </td>
+                                <td>
+                                    <button class="btn btn-light btn-action" type="button">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+                                    <button class="btn btn-light btn-action" type="button" @onclick="() => DeleteExpense(expense.ExpenseId)">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
                 </tbody>
             </table>
         </div>
@@ -186,9 +212,20 @@
     [Parameter]
     public string Id { get; set; }
 
-    BudgetGoal budgetGoal;
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
 
-     protected override async Task OnInitializedAsync()
+
+    BudgetGoal budgetGoal;
+    List<Expense> expenses;
+    List<Category> categories;
+    double TotalExpenses = 0;
+    double balance = 0;
+
+    private Expense newExpense = new Expense();
+
+
+    protected override async Task OnInitializedAsync()
     {
         var user = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User.Identity;
         if (user != null && user.IsAuthenticated)
@@ -203,5 +240,120 @@
                 Console.WriteLine($"ERROR: {ex.Message}");
             }
         }
+
+        // Get expenses by goalId
+        if (user != null && user.IsAuthenticated)
+        {
+            try
+            {
+                // ==== Get Expenses By Goal ID ====
+                expenses = await Http.GetFromJsonAsync<List<Expense>>($"api/expense/{Id}");
+
+                Console.WriteLine("============== EXPENSE INIT ==============");
+
+                Console.WriteLine($"Expenses: {expenses}");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"ERROR: {ex.Message}");
+            }
+        }
+
+        // Get categories
+        if (user != null && user.IsAuthenticated)
+            Console.WriteLine("============== CATEGORY INIT ==============");
+        {       
+            try
+            {
+                // ==== Get Categories ====
+                categories = await Http.GetFromJsonAsync<List<Category>>($"api/category");
+
+                foreach (var category in categories)
+                {
+                    Console.WriteLine($"Category: {category.Name}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR: {ex.Message}");
+            }
+        }
+
+        // Calculate total expenses amount
+        if (expenses != null && expenses.Any())
+        {
+            foreach (var expense in expenses)
+            {
+                TotalExpenses += expense.Amount;
+            }
+
+            //balance = budgetGoal.Target - TotalExpenses;
+        }
     }
+
+    // Create expense
+    private async Task CreateExpense()
+    {
+        // check if category is selected empty, do alert
+        if (newExpense.Category == "")
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "Category must not be empty");
+            return;
+        }
+
+        var user = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User.Identity;
+        if (user != null && user.IsAuthenticated)
+        {
+            try
+            {
+                // ==== Create Expense ====
+                newExpense.GoalId = int.Parse(Id);
+
+                var response = await Http.PostAsJsonAsync($"api/expense/", newExpense);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine("Expense created successfully!");
+                }
+                else
+                {
+                    Console.WriteLine("Expense creation failed!");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR: {ex.Message}");
+            }
+        }
+    }
+
+    // Delete expense
+    private async Task DeleteExpense(int id)
+    {
+        var user = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User.Identity;
+        if (user != null && user.IsAuthenticated)
+        {
+            try
+            {
+                // ==== Delete Expense ====
+                var response = await Http.DeleteAsync($"api/expense/{id}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Refresh page
+                    NavigationManager.NavigateTo($"/budget-goal/{Id}", true);
+                    Console.WriteLine("Expense deleted successfully!");
+                }
+                else
+                {
+                    Console.WriteLine("Expense deletion failed!");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR: {ex.Message}");
+            }
+        }
+    }
+
 }
