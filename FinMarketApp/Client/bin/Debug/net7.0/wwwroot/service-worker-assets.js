@@ -105,6 +105,10 @@
       "url": "FinMarketApp.Client.styles.css"
     },
     {
+      "hash": "sha256-zB1Pp8w\/ys0ZXs5YTb\/t+cNAnJQcBDXxTtF3gtgpXT8=",
+      "url": "_framework\/Blazored.SessionStorage.dll"
+    },
+    {
       "hash": "sha256-D1Cpv8dUhVhigWOZxMvQ0dgeOCRgaFoDpnRrjK\/cjRM=",
       "url": "_framework\/Microsoft.AspNetCore.Authorization.dll"
     },
@@ -197,12 +201,32 @@
       "url": "_framework\/Microsoft.Extensions.Primitives.dll"
     },
     {
+      "hash": "sha256-x7FvgTP4+eIaW1QPiv10u6u5Q+u4XfB1cOEpCzYMXC8=",
+      "url": "_framework\/Microsoft.IdentityModel.Abstractions.dll"
+    },
+    {
+      "hash": "sha256-ZceT+VyXrVMCCQx7ghNz4BXbpCkOZwHTSkPikk1tYfg=",
+      "url": "_framework\/Microsoft.IdentityModel.JsonWebTokens.dll"
+    },
+    {
+      "hash": "sha256-MX2ViCKbkayByAv6btVsWu9pMBgAoABlDWtVVQli8es=",
+      "url": "_framework\/Microsoft.IdentityModel.Logging.dll"
+    },
+    {
+      "hash": "sha256-kci9vmm4cxzxjfLH7gBsdkuSD95idJws2K27ijmaMqg=",
+      "url": "_framework\/Microsoft.IdentityModel.Tokens.dll"
+    },
+    {
       "hash": "sha256-tDUEq1bRgkbwPRKdclDqQy6f2l2zgHm+84KImibIOF8=",
       "url": "_framework\/Microsoft.JSInterop.dll"
     },
     {
       "hash": "sha256-jZp0x8\/BJDWy8XWsxYJaiGXW3zObZi90AYiYGjhemMU=",
       "url": "_framework\/Microsoft.JSInterop.WebAssembly.dll"
+    },
+    {
+      "hash": "sha256-6UnGv5ruxREG0Pk32MuWFOFjcqcvYNuinJcJaBXPnRA=",
+      "url": "_framework\/System.IdentityModel.Tokens.Jwt.dll"
     },
     {
       "hash": "sha256-P\/MqD0fCBd5bgTM16JC1QC\/Zz7s+CwViyzmDFkBG4\/c=",
@@ -905,23 +929,23 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-a9ACa81LKMCqJnKrnXy\/9BYs61OP7tImqDQwpk4rPog=",
+      "hash": "sha256-GqEqx40YnF8jR5EwgoLk6p9Qi7KL5MaxX8CRH2ZNTN0=",
       "url": "_framework\/FinMarketApp.Shared.dll"
     },
     {
-      "hash": "sha256-+W7TqT5lDYdo+2XDx7Dpv59hn7EbqaoulbRvSjvyR+M=",
+      "hash": "sha256-j6\/NSfy8zBjfC3EuYqxN1aZ0WSqoDFiORnoiq5DB1TY=",
       "url": "_framework\/FinMarketApp.Shared.pdb"
     },
     {
-      "hash": "sha256-wqXPlLn8N6bkSjqbtZvdxWtIU9dHpnGyptrJ\/JCANOg=",
+      "hash": "sha256-oDGsrnGsGbRiCaWwOwIZ\/Usc8wU0GAWzrBi8BZGWaQo=",
       "url": "_framework\/FinMarketApp.Client.dll"
     },
     {
-      "hash": "sha256-oqRF8QJ20M+UMS5zelYsLVO+iMlDJesSI90zmxpt43k=",
+      "hash": "sha256-we5CAyNcD7s8bAFT6xBkg+a\/k3\/a6ElB\/MTvAP3pFbE=",
       "url": "_framework\/FinMarketApp.Client.pdb"
     },
     {
-      "hash": "sha256-pfYllT4avVHauusHTruX0sar7\/m3dNl88zvT1w\/nWo0=",
+      "hash": "sha256-R6GawK5L4tKciOXy3Tb9JnRy2mpm6rsMUGeVEjm5z5g=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -929,5 +953,5 @@
       "url": "_content\/Microsoft.AspNetCore.Components.WebAssembly.Authentication\/AuthenticationService.js"
     }
   ],
-  "version": "XREYcsn3"
+  "version": "LUQs1E7I"
 };

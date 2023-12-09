@@ -1,4 +1,8 @@
 ﻿@page "/login"
+@using FinMarketApp.Shared
+@using System.Net
+
+@inject NavigationManager navManager
 
 <PageTitle>Fin Market (Login)</PageTitle>
 
@@ -27,13 +31,13 @@
                         <div class="row">
                             <div class="col">
                                 <label class="form-label">Password</label>
-                                <input type="password" class="form-control" name="password" required/>
+                                <input  type="password" class="form-control" name="password" required />
                             </div>
                         </div>
                     </div>
 
                     <div class="d-grid gap-2">
-                        <button class="btn btn-primary btn-login" type="submit">
+                        <button  class="btn btn-primary btn-login">
                             Login
                         </button>
                     </div>

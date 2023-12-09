@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "r1+lDo0kuJs7zZssiMbpNazs+MWQftzkfaHAs+tuIAI95ogUvxfvmObJx/8yeYxqmo3X2X7rUfQc4PCQedQwrA==",
+  "dgSpecHash": "GYgaiEp3nbTmfETEsklkuBxgXj39y0Ka5h4YjyigJ69MaI4aFfDH7SHNStHHW966xT5RaYL00cauXjCD4gRDSw==",
   "success": true,
   "projectFilePath": "C:\\Users\\tjand\\source\\repos\\FinMarketApp\\FinMarketApp\\Shared\\FinMarketApp.Shared.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\tjand\\.nuget\\packages\\microsoft.identitymodel.abstractions\\7.0.3\\microsoft.identitymodel.abstractions.7.0.3.nupkg.sha512",
+    "C:\\Users\\tjand\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\7.0.3\\microsoft.identitymodel.jsonwebtokens.7.0.3.nupkg.sha512",
+    "C:\\Users\\tjand\\.nuget\\packages\\microsoft.identitymodel.logging\\7.0.3\\microsoft.identitymodel.logging.7.0.3.nupkg.sha512",
+    "C:\\Users\\tjand\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.0.3\\microsoft.identitymodel.tokens.7.0.3.nupkg.sha512",
+    "C:\\Users\\tjand\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.0.3\\system.identitymodel.tokens.jwt.7.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

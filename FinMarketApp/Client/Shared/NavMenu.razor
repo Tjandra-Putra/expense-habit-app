@@ -1,4 +1,8 @@
-﻿<nav class="navbar navbar-expand-lg">
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject NavigationManager Navigation
+
+<nav class="navbar navbar-expand-lg">
     <div class="container">
         <NavLink class="navbar-brand" href="/">
             <img src="/images/logo.png" alt="" class="img-fluid logo" />
@@ -23,19 +27,37 @@
                 </AuthorizeView>
             </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <NavLink class="nav-link text-white" aria-current="page" href="/login">Sign In</NavLink>
-                </li>
+                <AuthorizeView>
+                    <Authorized>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                @context.User.Identity?.Name
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><button class="dropdown-item" @onclick="BeginLogOut">Logout</button></li>
+                            </ul>
+                        </li>                        
+                    </Authorized>
+                    <NotAuthorized>
+                            <li class="nav-item">
+                                <NavLink class="nav-link text-white" aria-current="page" href="/login">Sign In</NavLink>
+                            </li>
+                    </NotAuthorized>
+                </AuthorizeView>
             </ul>
         </div>
     </div>
 </nav>
 
-@code {
-
-}
 
 
 @code {
- 
+    private void BeginLogOut()
+    {
+        // Navigation.NavigateToLogout("authentication/logout");
+        Navigation.NavigateToLogout("authentication/logout");
+    }
 }

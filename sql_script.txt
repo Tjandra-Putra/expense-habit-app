@@ -1,0 +1,27 @@
+-- Table: User
+CREATE TABLE [User] (
+    UserID INT PRIMARY KEY IDENTITY(1,1),
+    Name VARCHAR(255),
+    Email VARCHAR(255),
+    Password VARCHAR(255)
+);
+
+
+-- Table: BudgetGoal
+CREATE TABLE BudgetGoal (
+    GoalID INT PRIMARY KEY,
+    Name VARCHAR(255),
+    Target DECIMAL(10, 2),
+    UserID INT FOREIGN KEY REFERENCES [User](UserID)
+);
+
+
+-- Table: Expense
+CREATE TABLE Expense (
+    ExpenseID INT PRIMARY KEY IDENTITY(1,1),
+    GoalID INT FOREIGN KEY REFERENCES BudgetGoal(GoalID),
+    Name VARCHAR(255),
+    Category VARCHAR(255),
+    Amount DECIMAL(10, 2),
+    Date DATETIME
+);

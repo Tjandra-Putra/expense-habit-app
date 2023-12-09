@@ -1,4 +1,6 @@
+using Blazored.SessionStorage;
 using FinMarketApp.Client;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -14,5 +16,4 @@ builder.Services.AddHttpClient("FinMarketApp.ServerAPI", client => client.BaseAd
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("FinMarketApp.ServerAPI"));
 
 builder.Services.AddApiAuthorization();
-
 await builder.Build().RunAsync();
