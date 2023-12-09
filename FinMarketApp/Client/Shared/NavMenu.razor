@@ -34,16 +34,16 @@
                                 @context.User.Identity?.Name
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
+                              @*   <li><a class="dropdown-item" href="#">Action</a></li>
                                 <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider"></li>
+                                <li><hr class="dropdown-divider"></li> *@
                                 <li><button class="dropdown-item" @onclick="BeginLogOut">Logout</button></li>
                             </ul>
                         </li>                        
                     </Authorized>
                     <NotAuthorized>
                             <li class="nav-item">
-                                <NavLink class="nav-link text-white" aria-current="page" href="/login">Sign In</NavLink>
+                            <NavLink class="nav-link text-white" aria-current="page" href="/Identity/Account/Login">Sign In</NavLink>
                             </li>
                     </NotAuthorized>
                 </AuthorizeView>

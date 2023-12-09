@@ -1,0 +1,85 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<link href="/css/register.css" rel="stylesheet" />
+
+
+<div class="container-fluid mt-4 mb-5">
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+    <div class="row">
+        <div class="left col">
+            <div class="title">Create an Account</div>
+            <div class="description">
+                Bring peace of mind to your financial journey
+            </div>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+
+            <div class="mb-3">
+                <div class="row">
+                    <div class="col">
+                        <label class="form-label">Email Address</label>
+                        <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+@*                         <label asp-for="Input.Email">Email</label>
+ *@                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>                  
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="row">
+                    <div class="col">
+                        <label class="form-label">Password</label>
+                        <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+@*                         <label asp-for="Input.Password">Password</label>
+ *@                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="row">
+                    <div class="col">
+                        <label class="form-label">Confirm Password</label>
+                        <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+@*                         <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+ *@                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary btn-login" id="registerSubmit" type="submit">
+                    Register
+                </button>
+            </div>
+
+@*                 <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+ *@
+                <small class="mt-2 text-muted">Already have an account? <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Sign in</a></small>
+        </div>
+
+        <div class="right col">
+            <div class="title">
+                <span> Welcome to</span> <br />
+                fin market
+            </div>
+            <div class="description">
+                Navigating your financial future with smart tips today
+            </div>
+
+        @*     <NavLink href="/">
+                <img src="/images/logo.png" alt="" class="img-fluid logo" />
+            </NavLink> *@
+        </div>
+    </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
