@@ -1,4 +1,7 @@
 ﻿@page "/"
+@using FinMarketApp.Shared
+@inject HttpClient Http
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 <PageTitle>Fin Market (Home)</PageTitle>
 
@@ -37,5 +40,22 @@
       </div>
 </main>
 
+@code{
+    // this is sample code on how to get data from the server based on authenticated user
+    protected override async Task OnInitializedAsync(){
+
+
+
+        Console.WriteLine("*********************** $@%@$%@%OnInitializedAsync");
+
+        var user = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User.Identity;
+        if (user != null && user.IsAuthenticated)
+        {
+            var budgetGoals = await Http.GetFromJsonAsync<List<BudgetGoal>>("api/budgetgoal"); // the name is from controller: BudgetGoalController without the word controller
+            Console.WriteLine("HERE!!!!");
+            Console.WriteLine(budgetGoals);
+        }
+    }
+}
 
 

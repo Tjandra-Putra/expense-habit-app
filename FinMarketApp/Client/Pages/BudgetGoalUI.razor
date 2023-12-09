@@ -1,0 +1,207 @@
+﻿@page "/budget-goal"
+@page "/budget-goal/{id}"
+
+
+@attribute [Authorize]
+
+@using FinMarketApp.Shared
+@inject HttpClient Http
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+@if (Id == null)
+{
+    <h1>
+        No such budget goal found.
+    </h1>
+}
+
+
+<PageTitle>Fin Market (Budget Tracker)</PageTitle>
+
+<link href="css/budgetTracker.css" rel="stylesheet" />
+
+<NavMenu />
+
+
+<main>
+    <div class="container">
+        <div class="d-flex flex-row justify-content-between">
+            <div class="title">@budgetGoal?.Name</div>
+            <button class="btn btn-primary btn-budget"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#createExpensesModal">
+                Add Expenses
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade"
+                 id="createExpensesModal"
+                 tabindex="-1"
+                 aria-labelledby="createExpensesModal"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <form action="">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                    Create Expense
+                                </h1>
+                                <button type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label class="form-label">Name</label>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   name="name"
+                                                   required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label class="form-label">Category</label>
+                                            <select class="form-select"
+                                                    aria-label="Default select example"
+                                                    name="category"
+                                                    required>
+                                                <option selected disabled>Select Category</option>
+                                                <option value="Grocery">Grocery</option>
+                                                <option value="Health">Health</option>
+                                                <option value="Shopping">Shopping</option>
+                                                <option value="Transportation">
+                                                    Transportation
+                                                </option>
+                                                <option value="Business Services">
+                                                    Business Services
+                                                </option>
+                                                <option value="Others">Others</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label class="form-label">Amount</label>
+                                            <input type="number"
+                                                   class="form-control"
+                                                   name="amount"
+                                                   placeholder="$0.00"
+                                                   required />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button"
+                                        class="btn btn-outline-dark"
+                                        data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="submit" class="btn btn-primary btn-budget">
+                                    Save changes
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-title">Budget Goal</div>
+                    <div class="figure">$@budgetGoal?.Target</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-title">Balance</div>
+                    <div class="figure">$2000</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-title">Status</div>
+                    <div class="figure">ON TRACK</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-title">Total Transactions</div>
+                    <div class="figure">$2000</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">Recent transactions</div>
+        <div class="card">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Balance</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>My Budget</td>
+                        <td>$200</td>
+                        <td>$1200</td>
+                        <td>on track</td>
+                        <td>10/12/2024</td>
+                        <td>
+                            <button class="btn btn-light btn-action" type="button">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </button>
+                            <button class="btn btn-light btn-action" type="button">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+@code{
+    [Parameter]
+    public string Id { get; set; }
+
+    BudgetGoal budgetGoal;
+
+     protected override async Task OnInitializedAsync()
+    {
+        var user = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User.Identity;
+        if (user != null && user.IsAuthenticated)
+        {
+            try
+            {
+                // ==== Get Budget By ID ====
+                budgetGoal = await Http.GetFromJsonAsync<BudgetGoal>($"api/budgetgoal/{Id}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR: {ex.Message}");
+            }
+        }
+    }
+}

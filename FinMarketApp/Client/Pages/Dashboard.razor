@@ -1,5 +1,11 @@
 ﻿@page "/dashboard"
+
 @attribute [Authorize]
+
+@using FinMarketApp.Shared
+@inject HttpClient Http
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
 
 
 <PageTitle>Fin Market (Dashboard)</PageTitle>
@@ -7,6 +13,8 @@
 <link href="css/dashboard.css" rel="stylesheet" />
 
 <NavMenu/>
+
+@* ========== THIS FILE IS A LIST OF BUDGETS CREATED BY THE USER ========== *@
 
 <main>
     <div class="container">
@@ -26,7 +34,7 @@
                  aria-labelledby="createBudgetModal"
                  aria-hidden="true">
                 <div class="modal-dialog">
-                    <form action="">
+                    <form @onsubmit="CreateBudgetGoal">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">
@@ -45,6 +53,7 @@
                                             <input type="text"
                                                    class="form-control"
                                                    name="name"
+                                                   @bind="newBudgetGoal.Name"
                                                    required />
                                         </div>
                                     </div>
@@ -57,6 +66,7 @@
                                             <input type="number"
                                                    class="form-control"
                                                    name="target"
+                                                   @bind="newBudgetGoal.Target"
                                                    required />
                                         </div>
                                     </div>
@@ -85,29 +95,44 @@
                         <th scope="col">No.</th>
                         <th scope="col">Name</th>
                         <th scope="col">Target</th>
-                        <th scope="col">Balance</th>
-                        <th scope="col">Status</th>
+                 @*        <th scope="col">Balance</th>
+                        <th scope="col">Status</th> *@
                         <th scope="col">Date</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
+
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>My Budget</td>
-                        <td>$200</td>
-                        <td>$1200</td>
-                        <td>on track</td>
-                        <td>10/12/2024</td>
-                        <td>
-                            <button class="btn btn-light btn-action" type="button">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            <button class="btn btn-light btn-action" type="button">
-                                <i class="fa-regular fa-trash-can"></i>
-                            </button>
-                        </td>
-                    </tr>
+                    @if (budgetGoals != null && budgetGoals.Any())
+                    {
+                        @foreach (var goal in budgetGoals)
+                        {
+                            <tr @onclick="() => NavigateToGoalDetails(goal.BudgetGoalId)" class="row-hover">
+                                <th scope="row">@goal.BudgetGoalId</th>
+                                <td>@goal.Name</td>
+                                <td>@string.Format("${0:N2}", goal.Target)</td>
+                          @*       <td>Balance</td>
+                                <td>Status</td> *@
+                                <td>
+                                    @goal.Date
+                                </td>
+                                <td>
+                                    <button class="btn btn-light btn-action" type="button">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+                                    <button class="btn btn-light btn-action" type="button">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="7">No budget goals found.</td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -117,4 +142,78 @@
 
 @code {
 
+    List<BudgetGoal> budgetGoals;
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    // this is sample code on how to get data from the server based on authenticated user
+    protected override async Task OnInitializedAsync()
+    {
+        var user = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User.Identity;
+        if (user != null && user.IsAuthenticated)
+        {
+            try
+            {
+                budgetGoals = await Http.GetFromJsonAsync<List<BudgetGoal>>("api/budgetgoal"); // the name is from controller: BudgetGoalController without the word controller
+            }
+            catch(Exception ex){
+                Console.WriteLine($"ERROR: {ex.Message}");
+            }
+        }
+
+    }
+
+    private void NavigateToGoalDetails(int goalId)
+    {
+        NavigationManager.NavigateTo($"/budget-goal/{goalId}");
+    }
+
+    // ========= CREATE BUDGET GOAL =========
+
+    private BudgetGoal newBudgetGoal = new BudgetGoal();
+
+    private async Task CreateBudgetGoal()
+    {
+        Console.WriteLine("================== Create Budget CLICKED! ==================");
+
+        var user = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User.Identity;
+        if (user != null && user.IsAuthenticated)
+        {
+            try
+            {
+                Console.WriteLine(newBudgetGoal.Target);
+                var response = await Http.PostAsJsonAsync("api/budgetgoal/", newBudgetGoal);
+
+                Console.WriteLine($"SAVING USER ID: {newBudgetGoal.ApplicationUserId}");
+
+                Console.WriteLine(response.IsSuccessStatusCode);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Successfully created the budget goal
+                    newBudgetGoal = new BudgetGoal(); // Reset the form
+                                                      // You may also want to refresh the list of budget goals
+
+                    // Refresh Page
+                    NavigationManager.NavigateTo("/dashboard", true);
+                    Console.WriteLine("Budget goal created successfully!");
+                }
+                else
+                {
+                    // Handle error response from the server
+                    var errorMessage = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine($"Error: {errorMessage}");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+    }
+
+
+   
 }

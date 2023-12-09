@@ -17,7 +17,7 @@
       "url": "css\/budgetTracker.css"
     },
     {
-      "hash": "sha256-c9pHkrhsJluZ6aGh2luOE0h+143szaM0TD5CfQK105Y=",
+      "hash": "sha256-iS8SqqXWa3IaIy5HkHhIqbpEBAQyw3aiJqpVEfe7Om0=",
       "url": "css\/dashboard.css"
     },
     {
@@ -929,23 +929,23 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-GqEqx40YnF8jR5EwgoLk6p9Qi7KL5MaxX8CRH2ZNTN0=",
+      "hash": "sha256-0joAphqC2X8ExHeZxub0UMNuxDYFayypGMiO84dRJ7M=",
       "url": "_framework\/FinMarketApp.Shared.dll"
     },
     {
-      "hash": "sha256-j6\/NSfy8zBjfC3EuYqxN1aZ0WSqoDFiORnoiq5DB1TY=",
+      "hash": "sha256-yAt8YQEQziZniJw9cB4Xi12qfMozro4U2he1nbMt0NE=",
       "url": "_framework\/FinMarketApp.Shared.pdb"
     },
     {
-      "hash": "sha256-BdRvYvpgXxrgACtaaRN7MaEEUZYXpf1i3pMsdwBaIpg=",
+      "hash": "sha256-ksu2r4ACrL8hOOP7pem4Um9QsqPzHO2Y2K9\/x7kF+Wk=",
       "url": "_framework\/FinMarketApp.Client.dll"
     },
     {
-      "hash": "sha256-TPnV2zITs71Q7m5OBT7FE+nGPTX0Mk97eNDu1JbOo8I=",
+      "hash": "sha256-NBsPMV8iMAK398r96J\/zsPRm2pQ9K5LYVHSdTQzmcKU=",
       "url": "_framework\/FinMarketApp.Client.pdb"
     },
     {
-      "hash": "sha256-qYnMrY6EjNvfE9FeofCyPTQ6IdgjNRH55CbjXERzyZE=",
+      "hash": "sha256-hYLsz8GDBmujQEPaVS+lZdna5zgtI1s4Of69jT8aTOE=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -953,5 +953,5 @@
       "url": "_content\/Microsoft.AspNetCore.Components.WebAssembly.Authentication\/AuthenticationService.js"
     }
   ],
-  "version": "ycufMU6L"
+  "version": "WunEvXUp"
 };
