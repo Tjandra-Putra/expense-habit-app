@@ -5,6 +5,10 @@
 @attribute [Authorize]
 
 @using FinMarketApp.Shared
+@using ChartJs.Blazor.PieChart
+@using ChartJs.Blazor.LineChart
+@using ChartJs.Blazor.BarChart
+
 @inject HttpClient Http
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject IJSRuntime JSRuntime
@@ -296,7 +300,6 @@
                                         </div>
                                     </div>
 
-
                                     <button class="btn btn-light btn-action" type="button" @onclick="() => DeleteExpense(expense.ExpenseId)">
                                         <i class="fa-regular fa-trash-can"></i>
                                     </button>
@@ -306,6 +309,67 @@
                     }
                 </tbody>
             </table>
+        </div>
+
+        <div class="card">
+           <div class="row">
+               <div class="col-md-6">
+                   @* Bar chart goes here *@
+                    @{
+                        try
+                        {
+                            if (expenses != null && expenses.Any())
+                            {
+                                <Chart Config="_barConfig" Width="400" Height="200"></Chart>
+                            }
+                            else
+                            {
+                                <p>No expenses data available.</p>
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            <p>An error occurred while rendering the chart. Details: @ex.Message</p>
+                            // Log or handle the exception as needed
+                        }
+                    }
+               </div>
+               <div class="col-md-6">
+                    @{
+                        try
+                        {
+                            if (expenses != null && expenses.Any())
+                            {
+                                <Chart Config="_pieConfig" Width="200"></Chart>
+                            }
+                            else
+                            {
+                                <p>No expenses data available.</p>
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            <p>An error occurred while rendering the chart. Details: @ex.Message</p>
+                            // Log or handle the exception as needed
+                        }
+                    }
+               </div>
+           </div>
+        </div>
+
+        <div class="card">
+           <div class="row mb-4">
+               <div class="col">
+                    @if (expenses != null && expenses.Any())
+                    {
+                        <Chart Config="_lineConfig" Width="400" Height="200"></Chart>
+                    }
+                    else
+                    {
+                        <p>No expenses data available.</p>
+                    }
+               </div>
+           </div>
         </div>
     </div>
 </main>
@@ -325,6 +389,13 @@
     double balance = 0;
 
     private Expense newExpense = new Expense();
+
+    // ============ [START] Chart Portion ============
+    private PieConfig _pieConfig;
+    private BarConfig _barConfig;
+    private LineConfig _lineConfig;  // Add LineConfig
+    // ============ [END] Chart Portion ============
+
 
 
     protected override async Task OnInitializedAsync()
@@ -370,9 +441,12 @@
                 // ==== Get Categories ====
                 categories = await Http.GetFromJsonAsync<List<Category>>($"api/category");
 
-                foreach (var category in categories)
+                if (categories != null && categories.Any())
                 {
-                    Console.WriteLine($"Category: {category.Name}");
+                    foreach (var category in categories)
+                    {
+                        Console.WriteLine($"Category: {category.Name}");
+                    }
                 }
             }
             catch (Exception ex)
@@ -391,6 +465,12 @@
 
             //balance = budgetGoal.Target - TotalExpenses;
         }
+
+        // ============ [START] Chart Portion ============
+        ConfigurePieConfig();
+        ConfigureBarConfig();
+        ConfigureLineConfig();
+        // ============ [END] Chart Portion ============
     }
 
     // Create expense
@@ -489,5 +569,242 @@
             }
         }
     }
+
+    // ============ [START] Chart Portion ============
+    protected void ConfigurePieConfig()
+    {
+        if (expenses != null && expenses.Any())
+        {
+            _pieConfig = new PieConfig
+                {
+                    Options = new PieOptions
+                    {
+                        Responsive = true,
+                        Title = new OptionsTitle
+                        {
+                            Display = true,
+                            Text = "Expenses by Category"
+                        }
+                    }
+                };
+
+            // get expenses by category
+            var expensesByCategory = expenses.GroupBy(x => x.Category)
+                .Select(y => new { Category = y.Key, Amount = y.Sum(z => z.Amount) })
+                .ToList();
+
+            // Create labels and data based on expensesByCategory
+            foreach (var expense in expensesByCategory)
+            {
+                _pieConfig.Data.Labels.Add(expense.Category);
+                Console.WriteLine($"Expense Category ===>: {expense.Category}");
+            }
+
+            PieDataset<double> dataset = new PieDataset<double>()
+                {
+                    BackgroundColor = new[]
+                    {
+                ColorUtil.ColorHexString(255, 99, 132), // Slice 1 aka "Red"
+                ColorUtil.ColorHexString(255, 205, 86), // Slice 2 aka "Yellow"
+                ColorUtil.ColorHexString(75, 192, 192), // Slice 3 aka "Green"
+                ColorUtil.ColorHexString(54, 162, 235), // Slice 4 aka "Blue"
+            }
+                };
+
+            foreach (var expense in expensesByCategory)
+            {
+                // add expense amount to dataset
+                dataset.Add(expense.Amount);
+                Console.WriteLine($"Expense Amount ===>: {expense.Amount}");
+            }
+
+            _pieConfig.Data.Datasets.Add(dataset);
+        }
+        else
+        {
+            // Handle the case where expenses is null or empty
+            // You might want to set _pieConfig to a default state or display a message.
+            _pieConfig = new PieConfig
+                {
+                    Options = new PieOptions
+                    {
+                        Responsive = true,
+                        Title = new OptionsTitle
+                        {
+                            Display = true,
+                            Text = "No Expenses Available"
+                        }
+                    }
+                };
+        }
+    }
+
+    protected void ConfigureBarConfig()
+    {
+        Console.Write("===================================== ConfigureBarConfig =================================");
+        if (expenses != null && expenses.Any())
+        {
+            _barConfig = new BarConfig
+                {
+                    Options = new BarOptions
+                    {
+                        Responsive = true,
+                        Legend = new Legend
+                        {
+                            Position = Position.Top
+                        },
+                        Title = new OptionsTitle
+                        {
+                            Display = true,
+                            Text = "Expenses by Category"
+                        }
+                    }
+                };
+            // get expenses by category
+            var expensesByCategory = expenses
+                .Where(x => !string.IsNullOrEmpty(x.Category))  // Exclude items with null or empty categories
+                .GroupBy(x => x.Category)
+                .Select(y => new { Category = y.Key, Amount = y.Sum(z => z.Amount) })
+                .ToList();
+
+            // Create labels and data based on expensesByCategory
+            foreach (var expense in expensesByCategory)
+            {
+                _barConfig.Data.Labels.Add(expense?.Category);
+                Console.WriteLine($"Expense Category ===>: {expense.Category}");
+            }
+
+            BarDataset<double> dataset = new BarDataset<double>()
+                {
+                    Label = "Category Expenses",
+                    BackgroundColor = new[]
+                    {
+                ColorUtil.ColorHexString(255, 99, 132), // Bar 1 aka "Red"
+                ColorUtil.ColorHexString(255, 205, 86), // Bar 2 aka "Yellow"
+                ColorUtil.ColorHexString(75, 192, 192), // Bar 3 aka "Green"
+                ColorUtil.ColorHexString(54, 162, 235), // Bar 4 aka "Blue"
+                    }
+                };
+
+            foreach (var expense in expensesByCategory)
+            {
+                // add expense amount to dataset
+                dataset.Add(expense.Amount);
+                Console.WriteLine($"Expense Amount ===>: {expense.Amount}");
+            }
+
+            _barConfig.Data.Datasets.Add(dataset);
+        }
+        else
+        {
+            // Handle the case where expenses is null or empty
+            // You might want to set _barConfig to a default state or display a message.
+            _barConfig = new BarConfig
+                {
+                    Options = new BarOptions
+                    {
+                        Responsive = true,
+                        Title = new OptionsTitle
+                        {
+                            Display = true,
+                            Text = "No Expenses Available"
+                        }
+                    }
+                };
+        }
+    }
+
+
+    protected void ConfigureLineConfig()
+    {
+        if (expenses != null && expenses.Any())
+        {
+            _lineConfig = new LineConfig
+                {
+                    Options = new LineOptions
+                    {
+                        Responsive = true,
+                        Title = new OptionsTitle
+                        {
+                            Display = true,
+                            Text = "Cumulative Expenses Over Time"
+                        }
+                    }
+                };
+
+            // Assuming expenses have a property named Date
+            var expensesOverTime = expenses.OrderBy(e => e.Date)
+                .Select(e => new CumulativeExpenseData { Date = e.Date, CumulativeAmount = 0 })
+                .ToList();
+
+            double cumulativeAmount = 0;
+
+            foreach (var expense in expensesOverTime)
+            {
+                cumulativeAmount += expenses.First(e => e.Date == expense.Date).Amount;
+                expense.CumulativeAmount = cumulativeAmount;
+            }
+
+            foreach (var expense in expensesOverTime)
+            {
+                _lineConfig.Data.Labels.Add(expense.Date.ToString("yyyy-MM-dd")); // Adjust the date format as needed
+            }
+
+            LineDataset<double> expensesDataset = new LineDataset<double>()
+                {
+                    Label = "Expenses",
+                    BackgroundColor = ColorUtil.ColorHexString(75, 192, 192),
+                    BorderColor = ColorUtil.ColorHexString(75, 192, 192),
+                    Fill = false
+                };
+
+            foreach (var expense in expensesOverTime)
+            {
+                expensesDataset.Add(expense.CumulativeAmount);
+            }
+
+            _lineConfig.Data.Datasets.Add(expensesDataset);
+
+            // Add a line for the target amount
+            LineDataset<double> targetDataset = new LineDataset<double>()
+                {
+                    Label = "Target",
+                    BackgroundColor = ColorUtil.ColorHexString(255, 99, 132),
+                    BorderColor = ColorUtil.ColorHexString(255, 99, 132),
+                    Fill = false,
+                    BorderDash = new[] { 5, 5 } // Optional: Add dashed line style
+                };
+
+            // Repeat the target amount for each date
+            foreach (var expense in expensesOverTime)
+            {
+                targetDataset.Add(budgetGoal?.Target ?? 0); // Assuming budgetGoal is available
+            }
+
+            _lineConfig.Data.Datasets.Add(targetDataset);
+        }
+        else
+        {
+            _lineConfig = new LineConfig
+                {
+                    Options = new LineOptions
+                    {
+                        Responsive = true,
+                        Title = new OptionsTitle
+                        {
+                            Display = true,
+                            Text = "No Expenses Available"
+                        }
+                    }
+                };
+        }
+    }
+
+    public class CumulativeExpenseData
+    {
+        public DateTime Date { get; set; }
+        public double CumulativeAmount { get; set; }
+    }
+
 
 }

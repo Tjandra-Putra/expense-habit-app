@@ -81,6 +81,19 @@
           }
         }
       },
+      "ChartJs.Blazor.Fork/2.0.2": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "7.0.14",
+          "Microsoft.CSharp": "4.7.0",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.1/ChartJs.Blazor.dll": {
+            "assemblyVersion": "2.0.2.0",
+            "fileVersion": "2.0.2.0"
+          }
+        }
+      },
       "Duende.IdentityServer/6.0.4": {
         "dependencies": {
           "Duende.IdentityServer.Storage": "6.0.4",
@@ -3104,6 +3117,7 @@
       "FinMarketApp.Client/1.0.0": {
         "dependencies": {
           "Blazored.SessionStorage": "2.4.0",
+          "ChartJs.Blazor.Fork": "2.0.2",
           "FinMarketApp.Shared": "1.0.0",
           "Microsoft.AspNetCore.Components.WebAssembly": "7.0.14",
           "Microsoft.AspNetCore.Components.WebAssembly.Authentication": "7.0.14",
@@ -3156,6 +3170,13 @@
       "sha512": "sha512-e3XXH+zGGxDq1zC7YzLDD8mfvtoC6ESwTWOGD25H+FbPJlB7yQeL72hDY76tqkcrh98fh+y12r4BNhyQVV9YKw==",
       "path": "blazored.sessionstorage/2.4.0",
       "hashPath": "blazored.sessionstorage.2.4.0.nupkg.sha512"
+    },
+    "ChartJs.Blazor.Fork/2.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1aJR2uX3Al1OnWsTOIza2UV4oDZcmspOhliXQ2f9rpAOCuwT0BPbN0eFYT3Fzp5aWU9+9tfyhPlQO48UwpfKVQ==",
+      "path": "chartjs.blazor.fork/2.0.2",
+      "hashPath": "chartjs.blazor.fork.2.0.2.nupkg.sha512"
     },
     "Duende.IdentityServer/6.0.4": {
       "type": "package",

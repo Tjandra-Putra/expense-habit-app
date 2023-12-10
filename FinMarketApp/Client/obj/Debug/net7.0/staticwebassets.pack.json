@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\tjand\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\contentFiles\\any\\netstandard2.1\\wwwroot\\ChartJsBlazorInterop.js",
+      "PackagePath": "staticwebassets\\ChartJsBlazorInterop.js"
+    },
+    {
       "Id": "C:\\Users\\tjand\\source\\repos\\FinMarketApp\\FinMarketApp\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\blazor.webassembly.js",
       "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
     },
@@ -87,6 +91,10 @@
     {
       "Id": "C:\\Users\\tjand\\source\\repos\\FinMarketApp\\FinMarketApp\\Client\\wwwroot\\css\\register.css",
       "PackagePath": "staticwebassets\\css\\register.css"
+    },
+    {
+      "Id": "C:\\Users\\tjand\\source\\repos\\FinMarketApp\\FinMarketApp\\Client\\wwwroot\\css\\tips.css",
+      "PackagePath": "staticwebassets\\css\\tips.css"
     },
     {
       "Id": "C:\\Users\\tjand\\source\\repos\\FinMarketApp\\FinMarketApp\\Client\\wwwroot\\favicon.png",

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "tOYboE6Z+aglAL1KJkrY5oquoHSyPKj5s/a+4MFBuJtanTBd0be8FFN0r6c+53LfgmRGP7qhuzBBCYrvFS31Gg==",
+  "dgSpecHash": "aMAE2/eoL4sLDI5OoL065AepKcIfClGvK7UPxa8j4lYAZaJ8sT5ZEXze2BKAmLacqtTdgChCslse8RjD36NffA==",
   "success": true,
   "projectFilePath": "C:\\Users\\tjand\\source\\repos\\FinMarketApp\\FinMarketApp\\Server\\FinMarketApp.Server.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\tjand\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\tjand\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\tjand\\.nuget\\packages\\blazored.sessionstorage\\2.4.0\\blazored.sessionstorage.2.4.0.nupkg.sha512",
+    "C:\\Users\\tjand\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\chartjs.blazor.fork.2.0.2.nupkg.sha512",
     "C:\\Users\\tjand\\.nuget\\packages\\duende.identityserver\\6.0.4\\duende.identityserver.6.0.4.nupkg.sha512",
     "C:\\Users\\tjand\\.nuget\\packages\\duende.identityserver.aspnetidentity\\6.0.4\\duende.identityserver.aspnetidentity.6.0.4.nupkg.sha512",
     "C:\\Users\\tjand\\.nuget\\packages\\duende.identityserver.entityframework\\6.0.4\\duende.identityserver.entityframework.6.0.4.nupkg.sha512",

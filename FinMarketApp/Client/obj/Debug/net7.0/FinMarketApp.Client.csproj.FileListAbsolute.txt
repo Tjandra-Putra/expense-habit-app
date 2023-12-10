@@ -873,3 +873,11 @@ C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Client\obj\Debug\net7.0\co
 C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Client\obj\Debug\net7.0\compressed\uu3t8ev2i3.gz
 C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Client\obj\Debug\net7.0\compressed\2frpx7e5sf.gz
 C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Client\obj\Debug\net7.0\compressed\wqnmi7xwz4.gz
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Client\bin\Debug\net7.0\wwwroot\_framework\ChartJs.Blazor.dll
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Client\bin\Debug\net7.0\wwwroot\_framework\Newtonsoft.Json.dll
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Client\bin\Debug\net7.0\wwwroot\_framework\Newtonsoft.Json.dll.gz
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Client\bin\Debug\net7.0\wwwroot\_framework\ChartJs.Blazor.dll.gz
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Client\bin\Debug\net7.0\ChartJs.Blazor.dll
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Client\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Client\obj\Debug\net7.0\compressed\sizs91t0yk.gz
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Client\obj\Debug\net7.0\compressed\k6r0jcjgks.gz

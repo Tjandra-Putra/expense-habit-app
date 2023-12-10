@@ -1,6 +1,10 @@
 ﻿self.assetsManifest = {
   "assets": [
     {
+      "hash": "sha256-+LTDLTFQOAzv\/Zs6t+iLN+sImMB14wosmwDodz8KGH8=",
+      "url": "ChartJsBlazorInterop.js"
+    },
+    {
       "hash": "sha256-Dw8h5zdkPwMHvQsE456FU6JROqtiRtKXFa1rXSC2ZGY=",
       "url": "css\/app.css"
     },
@@ -13,7 +17,7 @@
       "url": "css\/bootstrap\/bootstrap.min.css.map"
     },
     {
-      "hash": "sha256-y3tzdSByCYJvWzQo7YuvpJO6xZ+ZxMCZoeC+Mbjqy8E=",
+      "hash": "sha256-I1K4yVa0Dz6wXaqZuqO+lb9goRTJhW8vfSHpKyQanFU=",
       "url": "css\/budgetTracker.css"
     },
     {
@@ -69,6 +73,10 @@
       "url": "css\/register.css"
     },
     {
+      "hash": "sha256-Wscd+GNtcA6JrvnfLFCNc+xbNNislBvGw4r4x\/h2VZM=",
+      "url": "css\/tips.css"
+    },
+    {
       "hash": "sha256-4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg=",
       "url": "favicon.png"
     },
@@ -89,7 +97,7 @@
       "url": "images\/Transaction@4x.png"
     },
     {
-      "hash": "sha256-Yd\/m6n1Ap1vDnRxzym0Ap4BiR\/96OMdmzNQqhfiCvlk=",
+      "hash": "sha256-J1ElprIfX+SdC\/YPDsm\/ky6NbEIclxNTjaclNAoB+v8=",
       "url": "index.html"
     },
     {
@@ -107,6 +115,10 @@
     {
       "hash": "sha256-zB1Pp8w\/ys0ZXs5YTb\/t+cNAnJQcBDXxTtF3gtgpXT8=",
       "url": "_framework\/Blazored.SessionStorage.dll"
+    },
+    {
+      "hash": "sha256-0ciRJps8EWsbo3zIh4fYA2+QBnZIl1lSu4aydLaQDEo=",
+      "url": "_framework\/ChartJs.Blazor.dll"
     },
     {
       "hash": "sha256-D1Cpv8dUhVhigWOZxMvQ0dgeOCRgaFoDpnRrjK\/cjRM=",
@@ -223,6 +235,10 @@
     {
       "hash": "sha256-jZp0x8\/BJDWy8XWsxYJaiGXW3zObZi90AYiYGjhemMU=",
       "url": "_framework\/Microsoft.JSInterop.WebAssembly.dll"
+    },
+    {
+      "hash": "sha256-mRd6TL4DYldo1ko9czkjEDcoiPdMPrJxz3dekwV6OOY=",
+      "url": "_framework\/Newtonsoft.Json.dll"
     },
     {
       "hash": "sha256-6UnGv5ruxREG0Pk32MuWFOFjcqcvYNuinJcJaBXPnRA=",
@@ -937,21 +953,25 @@
       "url": "_framework\/FinMarketApp.Shared.pdb"
     },
     {
-      "hash": "sha256-BVd0+\/8pwHB026ItC1UPoGaLO817XDA1c7toL\/UdMEM=",
+      "hash": "sha256-DQD59+uYIVgpzLoqPDgowrPu6utEXX\/ae4ifMh2FvAc=",
       "url": "_framework\/FinMarketApp.Client.dll"
     },
     {
-      "hash": "sha256-IjPdg3vOMexIsu2+NHT5OxnH8CXIYoor1ufgwld58UY=",
+      "hash": "sha256-Xxid1SVxxHV7v\/N19wnrZIeyY9puOU3XmlmZrSa5rfw=",
       "url": "_framework\/FinMarketApp.Client.pdb"
     },
     {
-      "hash": "sha256-KxZz\/vjoQz2GH7qJupHD+cm+G6eAD91U1m9q8cKe8Gg=",
+      "hash": "sha256-dRk7u8DO0bi5j1ufRx50Z71YkNZtkLedX7kUEk3dvhA=",
       "url": "_framework\/blazor.boot.json"
     },
     {
       "hash": "sha256-ufwN9wIcw3DmyXTJUOSibX\/BdZCBQRXyD5\/Ho\/+sh0E=",
       "url": "_content\/Microsoft.AspNetCore.Components.WebAssembly.Authentication\/AuthenticationService.js"
+    },
+    {
+      "hash": "sha256-+LTDLTFQOAzv\/Zs6t+iLN+sImMB14wosmwDodz8KGH8=",
+      "url": "_content\/ChartJs.Blazor.Fork\/ChartJsBlazorInterop.js"
     }
   ],
-  "version": "QYehtCDv"
+  "version": "ZXP4KfQL"
 };

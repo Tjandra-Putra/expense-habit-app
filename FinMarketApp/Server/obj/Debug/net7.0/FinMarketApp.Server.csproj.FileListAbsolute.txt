@@ -324,3 +324,4 @@ C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Server\bin\Debug\net7.0\ru
 C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Server\bin\Debug\net7.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Server\bin\Debug\net7.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Server\bin\Debug\net7.0\runtimes\win-x86\native\e_sqlite3.dll
+C:\Users\tjand\source\repos\FinMarketApp\FinMarketApp\Server\bin\Debug\net7.0\ChartJs.Blazor.dll

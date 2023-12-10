@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "+imrlZEDlmDVAz3NNuYVGt783q3A50p0SLfUE21fFb9hPQ61J+LfdQ7qj4XXhIBLc3/l6sKPy5ZyFyA/1N4fbQ==",
+  "dgSpecHash": "xe9hXtsEaqaHYrpWaU8y1EC4/M6KxlopaGtDHldBl38oyBNey828J3HMoFxlG+0zFnOT09q/sL2Ay+U+14aCng==",
   "success": true,
   "projectFilePath": "C:\\Users\\tjand\\source\\repos\\FinMarketApp\\FinMarketApp\\Client\\FinMarketApp.Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tjand\\.nuget\\packages\\blazored.sessionstorage\\2.4.0\\blazored.sessionstorage.2.4.0.nupkg.sha512",
+    "C:\\Users\\tjand\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\chartjs.blazor.fork.2.0.2.nupkg.sha512",
     "C:\\Users\\tjand\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.14\\microsoft.aspnetcore.authorization.7.0.14.nupkg.sha512",
     "C:\\Users\\tjand\\.nuget\\packages\\microsoft.aspnetcore.components\\7.0.14\\microsoft.aspnetcore.components.7.0.14.nupkg.sha512",
     "C:\\Users\\tjand\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\7.0.14\\microsoft.aspnetcore.components.analyzers.7.0.14.nupkg.sha512",
@@ -15,6 +16,7 @@
     "C:\\Users\\tjand\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\7.0.14\\microsoft.aspnetcore.components.webassembly.authentication.7.0.14.nupkg.sha512",
     "C:\\Users\\tjand\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.devserver\\7.0.14\\microsoft.aspnetcore.components.webassembly.devserver.7.0.14.nupkg.sha512",
     "C:\\Users\\tjand\\.nuget\\packages\\microsoft.aspnetcore.metadata\\7.0.14\\microsoft.aspnetcore.metadata.7.0.14.nupkg.sha512",
+    "C:\\Users\\tjand\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\tjand\\.nuget\\packages\\microsoft.extensions.configuration\\7.0.0\\microsoft.extensions.configuration.7.0.0.nupkg.sha512",
     "C:\\Users\\tjand\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\tjand\\.nuget\\packages\\microsoft.extensions.configuration.binder\\7.0.4\\microsoft.extensions.configuration.binder.7.0.4.nupkg.sha512",
@@ -39,6 +41,7 @@
     "C:\\Users\\tjand\\.nuget\\packages\\microsoft.net.illink.analyzers\\7.0.100-1.23211.1\\microsoft.net.illink.analyzers.7.0.100-1.23211.1.nupkg.sha512",
     "C:\\Users\\tjand\\.nuget\\packages\\microsoft.net.illink.tasks\\7.0.100-1.23211.1\\microsoft.net.illink.tasks.7.0.100-1.23211.1.nupkg.sha512",
     "C:\\Users\\tjand\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\8.0.0\\microsoft.net.sdk.webassembly.pack.8.0.0.nupkg.sha512",
+    "C:\\Users\\tjand\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\tjand\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.0.3\\system.identitymodel.tokens.jwt.7.0.3.nupkg.sha512",
     "C:\\Users\\tjand\\.nuget\\packages\\system.io.pipelines\\7.0.0\\system.io.pipelines.7.0.0.nupkg.sha512",
     "C:\\Users\\tjand\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
