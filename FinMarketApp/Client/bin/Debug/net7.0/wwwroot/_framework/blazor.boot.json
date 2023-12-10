@@ -1,7 +1,7 @@
 {
   "entryAssembly": "FinMarketApp.Client",
   "resources": {
-    "hash": "sha256-bvD/l/e9hhSkuJcDpoPzMkN2myYUj7Gry+HLJMAlHV0=",
+    "hash": "sha256-a7HpT+JkMVoCtRek9U7GcRhImwu8J8QNFh006oiJl28=",
     "runtime": {
       "dotnet.7.0.14.a9r6md9d0j.js": "sha256-YWGUknGRzP/fgO6YjvCJKPVQNZAPEd6ll+rHfQEIW+I=",
       "dotnet.timezones.blat": "sha256-t5xviiOQTfAsF0UDhmcyalKiaehUmf/sqJl97tmPM0M=",
@@ -212,11 +212,11 @@
       "netstandard.dll": "sha256-TztlSRjADgiEABbiAMdWZpHrUVd8wnRtQRAvlwmRP/4=",
       "System.Private.CoreLib.dll": "sha256-BAhrZ8Zg3cJKQipxdzqQo+9jtPkOkRx1ou3oIhDohtk=",
       "FinMarketApp.Shared.dll": "sha256-gEJIe1fe1qlj+6n+RRbteP1p0fAFGysLnN825Nfj4yg=",
-      "FinMarketApp.Client.dll": "sha256-8KUCEAJwRmy9fiCUMxzMd5aPFcgknJ+inXKgL6vY1VY="
+      "FinMarketApp.Client.dll": "sha256-IsVoRdC4+T3yY4gJkMLayE5EC0A8mn3zOyOf8tM0xn0="
     },
     "pdb": {
       "FinMarketApp.Shared.pdb": "sha256-gckoV5YgWXq8y3JNCA2/+ru7NX8+Cq0D/IPHMy2fTQ0=",
-      "FinMarketApp.Client.pdb": "sha256-TCroCeBeXpIDTyrUaldZm0OGPpjQVHy1UE1MGJmbtU4="
+      "FinMarketApp.Client.pdb": "sha256-799XBtzyBsG1TrjVD54Yhfb1+R1DYmznlnDK9e9m2cE="
     },
     "runtimeAssets": {
       "dotnet.wasm": {

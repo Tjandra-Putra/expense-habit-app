@@ -192,9 +192,111 @@
                                     @expense.Date
                                 </td>
                                 <td>
-                                    <button class="btn btn-light btn-action" type="button">
+                                    <button class="btn btn-light btn-action" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#updateExpenseModal">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade"
+                                         id="updateExpenseModal"
+                                         tabindex="-1"
+                                         aria-labelledby="updateExpenseModal"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <form action="">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="updateExpenseModal">
+                                                            Update Expense
+                                                        </h1>
+                                                        <button type="button"
+                                                                class="btn-close"
+                                                                data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mb-3">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <label class="form-label">Name</label>
+                                                                    <input type="text"
+                                                                           class="form-control"
+                                                                           name="name"
+                                                                           @bind="updateExpense.Name"
+                                                                            />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <div class="row">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <label class="form-label">Category</label>
+                                                                        <select class="form-select"
+                                                                                aria-label="Default select example"
+                                                                                name="category"
+                                                                                @bind="updateExpense.Category"
+                                                                                >
+                                                                            <option>Select Category</option>
+                                                                            @if (categories != null && categories.Any())
+                                                                            {
+                                                                                @foreach (var category in categories)
+                                                                                {
+
+                                                                                    @if (category.Name == expense.Category)
+                                                                                    {
+                                                                                        <option value="@category.Name" selected>@category.Name</option>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <option value="@category.Name">@category.Name</option>
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <label class="form-label">Amount</label>
+                                                                    <input type="number"
+                                                                           step="0.01"
+                                                                           class="form-control"
+                                                                           name="amount"
+                                                                           @bind="updateExpense.Amount"
+                                                                            />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <small class="text-muted">
+                                                                Leave the fields empty if you do not want to update them.
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button"
+                                                                class="btn btn-outline-dark"
+                                                                data-bs-dismiss="modal">
+                                                            Close
+                                                        </button>
+                                                        <button type="submit" class="btn btn-primary btn-budget" @onclick="() => UpdateExpense(expense.ExpenseId)">
+                                                            Save changes
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+
                                     <button class="btn btn-light btn-action" type="button" @onclick="() => DeleteExpense(expense.ExpenseId)">
                                         <i class="fa-regular fa-trash-can"></i>
                                     </button>
@@ -347,6 +449,38 @@
                 else
                 {
                     Console.WriteLine("Expense deletion failed!");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR: {ex.Message}");
+            }
+        }
+    }
+
+    // Update expense
+    Expense updateExpense = new Expense();
+
+    private async Task UpdateExpense(int expenseId)
+    {
+
+        Console.WriteLine($"Expense Category update ===>: {updateExpense.Category}");
+
+        var user = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User.Identity;
+        if (user != null && user.IsAuthenticated)
+        {
+            try
+            {
+                // ==== Update Expense ====
+                var response = await Http.PutAsJsonAsync($"api/expense/{expenseId}", updateExpense);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine("Expense updated successfully!");
+                }
+                else
+                {
+                    Console.WriteLine("Expense update failed!");
                 }
             }
             catch (Exception ex)

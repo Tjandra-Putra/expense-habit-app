@@ -115,7 +115,57 @@ namespace FinMarketApp.Server.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(expense);
-        }   
+        }
+
+        // ================================ Update Expense ================================
+        [HttpPut("{expenseId}")]
+        public async Task<ActionResult<Expense>> UpdateExpense(int expenseId, Expense expense)
+        {
+            var user = await _context.Users
+                .Include(u => u.BudgetGoals)
+                .FirstOrDefaultAsync(u => u.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)); // authenticated user object from the database
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var expenseToUpdate = await _context.Expenses.FirstOrDefaultAsync(e => e.ExpenseId == expenseId);
+
+            if (expenseToUpdate == null)
+            {
+                return NotFound("Sorry no single expense found.");
+            }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
+
+            if (expenseToUpdate.ApplicationUserId != userId)
+            {
+                return BadRequest("Sorry you are not authorized to update this expense.");
+            }
+
+
+            // only update if the user has entered a value
+            if (expense.Name != null && expense.Name != "")
+            {
+                expenseToUpdate.Name = expense.Name;
+            }
+
+            if (expense.Amount != 0.0 && expense.Amount != 0)
+            {
+                expenseToUpdate.Amount = expense.Amount;
+            }
+
+            if (expense.Category != null && expense.Category != "")
+            {
+                expenseToUpdate.Category = expense.Category;
+            }
+
+
+            await _context.SaveChangesAsync();
+
+            return Ok(expenseToUpdate);
+        }
 
 
     }
