@@ -93,6 +93,10 @@
       "PackagePath": "staticwebassets\\css\\register.css"
     },
     {
+      "Id": "C:\\Users\\tjand\\source\\repos\\FinMarketApp\\FinMarketApp\\Client\\wwwroot\\css\\stocksUI.css",
+      "PackagePath": "staticwebassets\\css\\stocksUI.css"
+    },
+    {
       "Id": "C:\\Users\\tjand\\source\\repos\\FinMarketApp\\FinMarketApp\\Client\\wwwroot\\css\\tips.css",
       "PackagePath": "staticwebassets\\css\\tips.css"
     },
@@ -119,6 +123,10 @@
     {
       "Id": "C:\\Users\\tjand\\source\\repos\\FinMarketApp\\FinMarketApp\\Client\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\tjand\\source\\repos\\FinMarketApp\\FinMarketApp\\Client\\wwwroot\\listing_status.csv",
+      "PackagePath": "staticwebassets\\listing_status.csv"
     },
     {
       "Id": "C:\\Users\\tjand\\source\\repos\\FinMarketApp\\FinMarketApp\\Client\\wwwroot\\manifest.json",

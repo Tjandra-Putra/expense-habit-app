@@ -1,0 +1,131 @@
+﻿@page "/stocks"
+@using FinMarketApp.Shared
+@inject HttpClient Http
+
+@attribute [Authorize]
+
+<PageTitle>Fin Market (Stocks)</PageTitle>
+
+<link href="css/stocksUI.css" rel="stylesheet" />
+
+<NavMenu />
+
+
+@if (pagedStocks == null)
+{
+    <p>Loading...</p>
+}
+else if (pagedStocks.Any())
+{
+    <div class="container">
+        <div class="title">Stock Information</div>
+
+        <div class="card">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Symbol</th>
+                        <th>Name</th>
+                        <th>Exchange</th>
+                        <th>AssetType</th>
+                        <th>IPO Date</th>
+                        <th>Delisting Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < GetPagedStocks().Count(); i++)
+                    {
+                        var s = GetPagedStocks().ElementAt(i);
+                        var rowNumber = (currentPage - 1) * pageSize + i + 1;
+
+                        <tr>
+                            <td>@rowNumber</td>
+                            <td>@s.Symbol</td>
+                            <td>@s.Name</td>
+                            <td>@s.Exchange</td>
+                            <td>@s.AssetType</td>
+                            <td>@s.IPODate</td>
+                            <td>@s.DelistingDate</td>
+                            <td>@if (s.Status == "Active")
+                                {
+                                    <span class="badge bg-success">@s.Status</span>
+                                }
+                               else{
+                                    <span class="badge bg-danger">@s.Status</span>
+                                }
+                                </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <!-- Pagination controls -->
+            <ul class="pagination">
+                <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                    <a class="page-link" href="#" @onclick:preventDefault="true" @onclick="() => ChangePage(1)">First</a>
+                </li>
+
+                @{
+                    int startPage = Math.Max(1, currentPage - 2);
+                    int endPage = Math.Min(totalPages, currentPage + 2);
+                }
+
+                @for (int i = startPage; i <= endPage; i++)
+                {
+                    int pageIndex = i;
+                    <li class="page-item @(currentPage == pageIndex ? "active" : "")">
+                        <a class="page-link" href="#" @onclick:preventDefault="true" @onclick="() => ChangePage(pageIndex)">@pageIndex</a>
+                    </li>
+                }
+
+                <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+                    <a class="page-link" href="#" @onclick:preventDefault="true" @onclick="() => ChangePage(totalPages)">Last</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+}
+else
+{
+    <p>Loading...</p>
+}
+
+@code {
+    private List<Stocks> pagedStocks = new List<Stocks>();
+    private string errorMessage = string.Empty;
+    private int pageSize = 10;
+    private int currentPage = 1;
+    private int totalPages => (int)Math.Ceiling((double)pagedStocks.Count / pageSize);
+
+    protected override async Task OnInitializedAsync()
+    {
+        await UpdatePagedStocks();
+    }
+
+    private async Task UpdatePagedStocks()
+    {
+        try
+        {
+            pagedStocks = await Http.GetFromJsonAsync<List<Stocks>>("api/stock");
+            currentPage = 1;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"ERROR: {ex.Message}");
+            errorMessage = ex.Message;
+        }
+    }
+
+    private void ChangePage(int page)
+    {
+        currentPage = page;
+    }
+
+    private IEnumerable<Stocks> GetPagedStocks()
+    {
+        int startIndex = (currentPage - 1) * pageSize;
+        return pagedStocks.Skip(startIndex).Take(pageSize);
+    }
+}

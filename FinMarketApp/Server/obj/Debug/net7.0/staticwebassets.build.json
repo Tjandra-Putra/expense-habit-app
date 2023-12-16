@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "T0QVN/ADwCp5VDK7psUCgZsBgT64hsNXl9GAuNbFX/Y=",
+  "Hash": "WV/shcZu5Vo0g28EScQCXDNKuV6cgnHWAPMkhN/sYzQ=",
   "Source": "FinMarketApp.Server",
   "BasePath": "_content/FinMarketApp.Server",
   "Mode": "Default",
@@ -9745,6 +9745,25 @@
       "OriginalItemSpec": "wwwroot\\css\\register.css"
     },
     {
+      "Identity": "C:\\Users\\tjand\\source\\repos\\FinMarketApp\\FinMarketApp\\Client\\wwwroot\\css\\stocksUI.css",
+      "SourceId": "FinMarketApp.Client",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\tjand\\source\\repos\\FinMarketApp\\FinMarketApp\\Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/stocksUI.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\stocksUI.css"
+    },
+    {
       "Identity": "C:\\Users\\tjand\\source\\repos\\FinMarketApp\\FinMarketApp\\Client\\wwwroot\\css\\tips.css",
       "SourceId": "FinMarketApp.Client",
       "SourceType": "Project",
@@ -9876,6 +9895,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\Users\\tjand\\source\\repos\\FinMarketApp\\FinMarketApp\\Client\\wwwroot\\listing_status.csv",
+      "SourceId": "FinMarketApp.Client",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\tjand\\source\\repos\\FinMarketApp\\FinMarketApp\\Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "listing_status.csv",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\listing_status.csv"
     },
     {
       "Identity": "C:\\Users\\tjand\\source\\repos\\FinMarketApp\\FinMarketApp\\Client\\wwwroot\\manifest.json",

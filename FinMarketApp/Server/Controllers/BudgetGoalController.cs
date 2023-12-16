@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 namespace FinMarketApp.Server.Controllers
 {
-    [Authorize] // only authenticated users can access this controller
+    [Authorize] // this will make sure that the user is authenticated before they can access any of the methods in this controller
     [ApiController]
     [Route("api/[controller]")]
     public class BudgetGoalController : ControllerBase
